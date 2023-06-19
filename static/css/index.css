@@ -1,0 +1,81 @@
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+    .navbar a {
+        float: none;
+        display: block;
+        text-align: center;
+    }
+}
+
+.navbar {
+    background-color: #f1f1f1;
+    overflow: hidden;
+  }
+
+  .navbar a {
+    float: left;
+    padding: 12px;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  .navbar a:hover {
+    background-color: #ddd;
+  }
+
+  .navbar a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+
+
+
+/* CSS for the input field and button */
+.input-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.input-container input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.input-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* CSS for the input field and button */
+.input-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.input-container textarea {
+    width: 50%;
+    min-width: 300px;
+    max-width: 600px;
+    height: calc(50vw - 40px);
+    padding: 10px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.input-container button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
