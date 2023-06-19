@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from cloudMe import process_text, generate_wordcloud
 
 app = FastAPI()
 
@@ -29,11 +30,11 @@ def summerization(request: Request):
 def contact(request: Request):
     return templates.TemplateResponse("contact.html", {"request": request})
 
-@app.post("/generate_wordcloud")
-async def generate_wordcloud(request: Request):
+@app.post("/GenerateWordCloud")
+async def GenerateWordCloud(request: Request):
     form_data = await request.form()
     text_input = form_data["text_input"]
 
-    processed_text = processed_text(text_input)
-    generate_wordcloud(processed_text)
+    processed_text = process_text(text_input)
+    generate_wordcloud(text_input)
     return {"message": "word cloud generated successfully!"}
