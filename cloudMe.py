@@ -2,6 +2,7 @@ import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import matplotlib
 
 
 def remove_punctuation(doc):
@@ -29,7 +30,7 @@ def generate_wordcloud(text):
 
 
 def process_text(input_text):
-    nlp = spacy.load('en_core_web_lg')
+    nlp = spacy.load('en_core_web_sm')
     spacy_doc = nlp(input_text.strip("\n").lower())
 
     tokens_without_punct = remove_punctuation(spacy_doc)

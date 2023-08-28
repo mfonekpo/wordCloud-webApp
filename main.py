@@ -1,10 +1,11 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, File, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from cloudMe import process_text, generate_wordcloud
+from ocr import perform_ocr_on_image
 
-app = FastAPI()
+app = FastAPI(debug = True)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -14,9 +15,14 @@ templates = Jinja2Templates(directory="templates")
 def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+
+
 @app.get("/ocr", response_class=HTMLResponse)
-def ocr(request: Request):
-    return templates.TemplateResponse("ocr.html", {"request": request})
+async def ocr(request: Request, image_file: UploadFile = File(...)):
+    image_data = await image_file.read()
+    extracted_text = perform_ocr_on_image(image_data)
+    return templates.TemplateResponse("ocr.html", {"request": request, "results": extracted_text})
+
 
 @app.get("/ner", response_class=HTMLResponse)
 def ner(request: Request):
