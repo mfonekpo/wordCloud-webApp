@@ -6,6 +6,23 @@
     <title>OCR</title>
 </head>
 <body>
-    <h1>OCR coming soon!!</h1>
+    <h2>Optical Character Recognition (OCR)</h2>
+
+    <form action="/ocr" method="GET" enctype="multipart/form-data">
+        <input type="file" name="image_file" accept="image/*" required>
+        <input type="submit" value="Extract Text">
+    </form>
+
+    <h3>Extracted Text:</h3>
+    <textarea id="extracted-text" rows="10" cols="50" readonly></textarea>
+
+    <script>
+        // JavaScript to update the textarea if we get OCR results
+        window.onload = function () {
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('extracted-text').textContent = params.get('result');
+        }
+    </script>
+
 </body>
 </html>
